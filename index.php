@@ -17,6 +17,8 @@ Version: v1.1
 
  */
 require_once "settings.php";
+$error = array("", "", "");
+$msg   = array("", "", "");
 
 $servers = count($ip);
 ?>
@@ -95,37 +97,38 @@ while ($i <= $servers) {
 	}
 	if ($error[$i] != "1") {
 		?>
-			<table width="400"  border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="25%" align="center"><b><?php print$streamname[$i];
+							<table width="400"  border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td width="25%" align="center"><b><?php print$streamname[$i];
 		?></b>&nbsp;
-		&nbsp;
-		</td>
-					<td width="75%" colspan="3" bgcolor="#eeeeee"><img src="<?php if ($percentage == "100") {print"red-";}?>bar.gif" width="<?php print$barlength?>" height="12" alt="The server is at <?php print$percentage;?>% capacity"></td>
-				</tr>
-				<tr>
-					<td width="25%">&nbsp;</td>
-					<td width="25%">0%</td>
-					<td width="25%" align="center">50%</td>
-					<td width="25%" align="right">100%</td>
-				</tr>
-			</table>
-		<?php } else {?>
-			<table width="400"  border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="25%" align="center"><b><?php print$streamname[$i];
+						&nbsp;
+						</td>
+									<td width="75%" colspan="3" bgcolor="#eeeeee"><img src="<?php if ($percentage == "100") {print"red-";}?>bar.gif" width="<?php print$barlength?>" height="12" alt="The server is at <?php print$percentage;?>% capacity"></td>
+								</tr>
+								<tr>
+									<td width="25%">&nbsp;</td>
+									<td width="25%">0%</td>
+									<td width="25%" align="center">50%</td>
+									<td width="25%" align="right">100%</td>
+								</tr>
+							</table>
+		<?php } else {
+		?>
+							<table width="400"  border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td width="25%" align="center"><b><?php print$streamname[$i];
 		?></b>&nbsp;
-		&nbsp;
-		</td>
-					<td width="75%" colspan="3" bgcolor="#eeeeee">&nbsp;</td>
-				</tr>
-				<tr>
-					<td width="25%">&nbsp;</td>
-					<td width="25%">0%</td>
-					<td width="25%" align="center">50%</td>
-					<td width="25%" align="right">100%</td>
-				</tr>
-			</table>
+						&nbsp;
+						</td>
+									<td width="75%" colspan="3" bgcolor="#eeeeee">&nbsp;</td>
+								</tr>
+								<tr>
+									<td width="25%">&nbsp;</td>
+									<td width="25%">0%</td>
+									<td width="25%" align="center">50%</td>
+									<td width="25%" align="right">100%</td>
+								</tr>
+							</table>
 		<?php }
 	print"<p><b>Status:</b> $msg[$i]</p>\n  </div>\n  <div class=\"line\"> </div>\n";
 	$i++;
