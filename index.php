@@ -18,6 +18,7 @@ Version: v1.1
  */
 require_once "settings.php";
 require_once "statsWorker.php";
+require_once "ipWorker.php";
 $error = array("", "", "");
 $msg   = array("", "", "");
 
@@ -99,37 +100,37 @@ while ($i <= $servers) {
 	}
 	if ($error[$i] != "1") {
 		?>
-												<table width="600"  border="0" cellspacing="0" cellpadding="0">
-													<tr>
-														<td width="25%" align="center"><b><?php print$streamname[$i];
+														<table width="600"  border="0" cellspacing="0" cellpadding="0">
+															<tr>
+																<td width="25%" align="center"><b><?php print$streamname[$i];
 		?></b>&nbsp;
-											&nbsp;
-											</td>
-														<td width="75%" colspan="3" bgcolor="#eeeeee"><img src="<?php if ($percentage == "100") {print"red-";}?>bar.gif" width="<?php print$barlength?>" height="12" alt="The server is at <?php print$percentage;?>% capacity"></td>
-													</tr>
-													<tr>
-														<td width="25%">&nbsp;</td>
-														<td width="25%">0%</td>
-														<td width="25%" align="center">50%</td>
-														<td width="25%" align="right">100%</td>
-													</tr>
-												</table>
+													&nbsp;
+													</td>
+																<td width="75%" colspan="3" bgcolor="#eeeeee"><img src="<?php if ($percentage == "100") {print"red-";}?>bar.gif" width="<?php print$barlength?>" height="12" alt="The server is at <?php print$percentage;?>% capacity"></td>
+															</tr>
+															<tr>
+																<td width="25%">&nbsp;</td>
+																<td width="25%">0%</td>
+																<td width="25%" align="center">50%</td>
+																<td width="25%" align="right">100%</td>
+															</tr>
+														</table>
 		<?php } else {
 		?>
-												<table width="600"  border="0" cellspacing="0" cellpadding="0">
-													<tr>
-														<td width="25%" align="center"><b><?php print$streamname[$i];
+														<table width="600"  border="0" cellspacing="0" cellpadding="0">
+															<tr>
+																<td width="25%" align="center"><b><?php print$streamname[$i];
 		?></b>&nbsp;
-											</td>
-														<td width="75%" colspan="3" bgcolor="#eeeeee">&nbsp;</td>
-													</tr>
-													<tr>
-														<td width="25%">&nbsp;</td>
-														<td width="25%">0%</td>
-														<td width="25%" align="center">50%</td>
-														<td width="25%" align="right">100%</td>
-													</tr>
-												</table>
+													</td>
+																<td width="75%" colspan="3" bgcolor="#eeeeee">&nbsp;</td>
+															</tr>
+															<tr>
+																<td width="25%">&nbsp;</td>
+																<td width="25%">0%</td>
+																<td width="25%" align="center">50%</td>
+																<td width="25%" align="right">100%</td>
+															</tr>
+														</table>
 		<?php }
 	print"<p><b>Status:</b> $msg[$i]</p>\n  </div>\n  <div class=\"line\"> </div>\n";
 	$i++;
@@ -138,12 +139,13 @@ print"</div>\n";
 for ($j = 1; $j < $i; $j++) {
 	$radioStats = new statsWorker($ip[$j], $port[$j], $user_page, $adminuser, $adminpwd);
 	print("<div>\n");
-	print("<table>\n");
-	print("<tr><td colspan=\"2\"><b>$streamname[$j] Listner Details</b></td></tr>\n");
-	print("<tr><td>IP Address</td><td>Country</td></tr>\n");
+	print("<table width=\"600\">\n");
+	print("<tr><td colspan=\"4\" align=\"center\"><b>$streamname[$j] Listner Details</b></td></tr>\n");
+	print("<tr><td width=\"25%\"><b>IP Address</b></td><td width=\"25%\"><b>Country</b></td><td width=\"25%\"><b>Region</b></td><td width=\"25%\"><b>City</b></td></tr>\n");
 	$k = 1;
 	foreach ($radioStats->listeners as $value) {
-		print("<tr><td>$value</td><td>$k</td></tr>\n");
+		$ipDetails = new ipWorker("freegeoip.net", "/json/$value");
+		print("<tr><td>$value</td><td>" .$ipDetails->ipInfo['country_name']."</td><td>".$ipDetails->ipInfo['region_name']."</td><td>".$ipDetails->ipInfo['city']."</td></tr>\n");
 		$k++;
 	}
 	print("</table>\n");
@@ -157,7 +159,7 @@ $date            = date("jS F, Y", time()+0);
 ?>
 
 <?php
-print"<div>\n  <div>\n    <p><b>Live SHOUTcast statistics:</b> $date, $time</p>\n  </div>\n</div>\n";
+print"<div>\n  <div>\n    <p><b>SHOUTcast statistics updated:</b> $date, $time</p>\n  </div>\n</div>\n";
 ?>
 </body>
 </html>
