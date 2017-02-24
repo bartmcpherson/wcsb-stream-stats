@@ -95,7 +95,7 @@ while ($i <= $servers) {
 	print"  <div>\n";
 	if ($max[$i] > 0) {
 		$percentage = round(($listeners[$i]/$max[$i]*100));
-		$timesby    = (600/$max[$i]);
+		$timesby    = (450/$max[$i]);
 		$barlength  = round(($listeners[$i]*"$timesby"));
 	}
 	if ($error[$i] != "1") {
