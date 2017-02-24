@@ -30,7 +30,8 @@ class statsWorker {
 		/* Start Simple XML */
 		$simpleListnerxml = simplexml_load_string($listnerxml);
 		foreach ($simpleListnerxml->LISTENERS->LISTENER as $host) {
-			array_push($this->listeners, $host->HOSTNAME);
+			$currinfo = ['hostname' => $host->HOSTNAME, 'connecttime' => $host->CONNECTTIME];
+			array_push($this->listeners, $currinfo);
 		}
 
 	}

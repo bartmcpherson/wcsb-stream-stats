@@ -140,12 +140,14 @@ for ($j = 1; $j < $i; $j++) {
 	$radioStats = new statsWorker($ip[$j], $port[$j], $user_page, $adminuser, $adminpwd);
 	print("<div>\n");
 	print("<table width=\"600\">\n");
-	print("<tr><td colspan=\"4\" align=\"center\"><b>$streamname[$j] Listener Details</b></td></tr>\n");
-	print("<tr><td width=\"25%\"><b>IP Address</b></td><td width=\"25%\"><b>Country</b></td><td width=\"25%\"><b>Region</b></td><td width=\"25%\"><b>City</b></td></tr>\n");
+	print("<tr><td colspan=\"5\" align=\"center\"><b>$streamname[$j] Listener Details</b></td></tr>\n");
+	print("<tr><td width=\"25%\"><b>IP Address</b></td><td width=\"25%\"><b>Country</b></td><td width=\"25%\"><b>Region</b></td><td width=\"25%\"><b>City</b></td><td><b>How Long Connected (Hours:Minutes:Seconds)</b></td></tr>\n");
 	$k = 1;
 	foreach ($radioStats->listeners as $value) {
-		$ipDetails = new ipWorker("freegeoip.net", "/json/$value");
-		print("<tr><td>$value</td><td>" .$ipDetails->ipInfo['country_name']."</td><td>".$ipDetails->ipInfo['region_name']."</td><td>".$ipDetails->ipInfo['city']."</td></tr>\n");
+		$ipDetails = new ipWorker("freegeoip.net", "/json/$value[hostname]");
+		$connectlen = gmdate("H:i:s",$value['connecttime'] + 0);
+		//gmdate("H:i:s",$value['connecttime'])
+		print("<tr><td><a href=\"https://www.google.com/maps/place/".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude']."/@".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude'].",z7\" target=\"_blank\">$value[hostname]</a></td><td>" .$ipDetails->ipInfo['country_name']."</td><td>".$ipDetails->ipInfo['region_name']."</td><td>".$ipDetails->ipInfo['city']."</td><td>$connectlen</td></tr>\n");
 		$k++;
 	}
 	print("</table>\n");
@@ -159,7 +161,7 @@ $date            = date("jS F, Y", time()+0);
 ?>
 
 <?php
-print"<div>\n  <div>\n    <p><b>SHOUTcast statistics updated:</b> $date, $time</p>\n  </div>\n</div>\n";
+print"<div>\n<div>\n<p><b>SHOUTcast statistics updated:</b> $date, $time</p>\n<p>Latitude and longitude are estimates. Don't be a kreeper.</p>\n</div>\n</div>\n";
 ?>
 </body>
 </html>
