@@ -19,6 +19,40 @@ Version: v1.1
 require_once "settings.php";
 require_once "statsWorker.php";
 require_once "ipWorker.php";
+
+function secondsToWords($seconds) {
+	$ret = "";
+
+	/*** get the days ***/
+	$days = intval(intval($seconds)/(3600*24));
+	if ($days > 0) {
+		if ($days > 1) {
+			$ret .= "$days days ";
+		} else {
+			$ret .= "$days day ";
+		}
+	}
+
+	/*** get the hours ***/
+	$hours = (intval($seconds)/3600)%24;
+	if ($hours > 0) {
+		$ret .= "$hours hours ";
+	}
+
+	/*** get the minutes ***/
+	$minutes = (intval($seconds)/60)%60;
+	if ($minutes > 0) {
+		$ret .= "$minutes minutes ";
+	}
+
+	/*** get the seconds ***/
+	$seconds = intval($seconds)%60;
+	if ($seconds > 0) {
+		$ret .= "$seconds seconds";
+	}
+
+	return $ret;
+}
 $error = array("", "", "");
 $msg   = array("", "", "");
 
@@ -100,37 +134,32 @@ while ($i <= $servers) {
 	}
 	if ($error[$i] != "1") {
 		?>
-			<table width="600"  border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="25%" align="center"><b><?php print$streamname[$i];
-		?></b>&nbsp;
-		&nbsp;
-		</td>
-					<td width="75%" colspan="3" bgcolor="#eeeeee"><img src="<?php if ($percentage == "100") {print"red-";}?>bar.gif" width="<?php print$barlength?>" height="12" alt="The server is at <?php print$percentage;?>% capacity"></td>
-				</tr>
-				<tr>
-					<td width="25%">&nbsp;</td>
-					<td width="25%">0%</td>
-					<td width="25%" align="center">50%</td>
-					<td width="25%" align="right">100%</td>
-				</tr>
-			</table>
+				<table width="600"  border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="25%" align="center"><b><?php print$streamname[$i];?></b></td>
+						<td width="75%" colspan="3" bgcolor="#eeeeee"><img src="<?php if ($percentage == "100") {print"red-";}?>bar.gif" width="<?php print$barlength?>" height="12" alt="The server is at <?php print$percentage;?>% capacity"></td>
+					</tr>
+					<tr>
+						<td width="25%">&nbsp;</td>
+						<td width="25%">0%</td>
+						<td width="25%" align="center">50%</td>
+						<td width="25%" align="right">100%</td>
+					</tr>
+				</table>
 		<?php } else {
 		?>
-			<table width="600"  border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="25%" align="center"><b><?php print$streamname[$i];
-		?></b>&nbsp;
-		</td>
-					<td width="75%" colspan="3" bgcolor="#eeeeee">&nbsp;</td>
-				</tr>
-				<tr>
-					<td width="25%">&nbsp;</td>
-					<td width="25%">0%</td>
-					<td width="25%" align="center">50%</td>
-					<td width="25%" align="right">100%</td>
-				</tr>
-			</table>
+				<table width="600"  border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="25%" align="center"><b><?php print$streamname[$i];?></b></td>
+						<td width="75%" colspan="3" bgcolor="#eeeeee">&nbsp;</td>
+					</tr>
+					<tr>
+						<td width="25%">&nbsp;</td>
+						<td width="25%">0%</td>
+						<td width="25%" align="center">50%</td>
+						<td width="25%" align="right">100%</td>
+					</tr>
+				</table>
 		<?php }
 	print"<p><b>Status:</b> $msg[$i]</p>\n  </div>\n  <div class=\"line\"> </div>\n";
 	$i++;
@@ -141,13 +170,11 @@ for ($j = 1; $j < $i; $j++) {
 	print("<div>\n");
 	print("<table width=\"600\">\n");
 	print("<tr><td colspan=\"5\" align=\"center\"><b>$streamname[$j] Listener Details</b></td></tr>\n");
-	print("<tr><td width=\"25%\"><b>IP Address</b></td><td width=\"25%\"><b>Country</b></td><td width=\"25%\"><b>Region</b></td><td width=\"25%\"><b>City</b></td><td><b>How Long Connected (Hours:Minutes:Seconds)</b></td></tr>\n");
+	print("<tr><td><b>IP Address</b></td><td><b>Country</b></td><td><b>Region</b></td><td><b>City</b></td><td><b>Connection Time</b></td></tr>\n");
 	$k = 1;
 	foreach ($radioStats->listeners as $value) {
 		$ipDetails = new ipWorker("freegeoip.net", "/json/$value[hostname]");
-		$connectlen = gmdate("H:i:s",$value['connecttime'] + 0);
-		//gmdate("H:i:s",$value['connecttime'])
-		print("<tr><td><a href=\"https://www.google.com/maps/place/".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude']."/@".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude'].",z7\" target=\"_blank\">$value[hostname]</a></td><td>" .$ipDetails->ipInfo['country_name']."</td><td>".$ipDetails->ipInfo['region_name']."</td><td>".$ipDetails->ipInfo['city']."</td><td>$connectlen</td></tr>\n");
+		print("<tr><td><a href=\"https://www.google.com/maps/place/".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude']."/@".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude'].",z7\" target=\"_blank\">$value[hostname]</a></td><td>" .$ipDetails->ipInfo['country_name']."</td><td>".$ipDetails->ipInfo['region_name']."</td><td>".$ipDetails->ipInfo['city']."</td><td>".secondsToWords($value['connecttime']+0)."</td></tr>\n");
 		$k++;
 	}
 	print("</table>\n");
