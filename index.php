@@ -36,18 +36,26 @@ function secondsToWords($seconds) {
 	/*** get the hours ***/
 	$hours = (intval($seconds)/3600)%24;
 	if ($hours > 0) {
-		$ret .= "$hours hours ";
+		if ($hours > 1) {
+			$ret .= "$hours hours ";
+		} else {
+			$ret .= "$hours hour ";
+		}
 	}
 
 	/*** get the minutes ***/
 	$minutes = (intval($seconds)/60)%60;
 	if ($minutes > 0) {
-		$ret .= "$minutes minutes ";
+		if ($minutes > 1) {
+			$ret .= "$minutes minutes ";
+		} else {
+			$ret .= "$minutes minute ";
+		}
 	}
 
 	/*** get the seconds ***/
 	$seconds = intval($seconds)%60;
-	if ($seconds > 0) {
+	if ($seconds > 1) {
 		$ret .= "$seconds seconds";
 	}
 
