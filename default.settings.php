@@ -19,7 +19,9 @@ $refresh      = "60";// Page refresh time in seconds. Put 0 for no refresh
 $timeout      = "1";// Number of seconds before connecton times out - a higher value will slow the page down if any servers are offline
 $station_name = "You Station Name";
 
-$adminuser = "user name";
-$adminpwd  = 'user password';
-$user_page = '/admin.cgi?sid=1&mode=viewxml&page=3';
+$adminuser       = "user name";
+$adminpwd        = 'user password';
+$user_page       = '/admin.cgi?sid=1&mode=viewxml&page=3';
+$song_list_uri   = '/admin.cgi?sid=1&mode=viewxml&page=4';
+$update_song_uri = '/admin.cgi?sid=1&mode=updinfo&song=';
 ?>
