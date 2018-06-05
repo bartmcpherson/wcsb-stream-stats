@@ -177,7 +177,7 @@ while ($i <= $servers) {
 print"</div>\n";
 for ($j = 1; $j < $i; $j++) {
 	$radioStats = new statsWorker($ip[$j], $port[$j], $user_page, $adminuser, $adminpwd);
-	print("<div>\n");
+	print("<div id=\streamdetails\">\n");
 	print("<table width=\"100%\">\n");
 	print("<tr><td colspan=\"5\" align=\"center\"><b>$streamname[$j] Listener Details</b></td></tr>\n");
 	print("<tr><td><b>IP Address</b></td><td><b>Country</b></td><td><b>Region</b></td><td><b>City</b></td><td><b>Connection Time</b></td></tr>\n");

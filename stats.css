@@ -6,19 +6,14 @@ body {
 	background-color: #E5E4D7;
 }
 
-div {
-	border: 1px solid #2C6700;
-	padding: 4px;
-	margin-bottom: 5px;
-	width: 80vw;
-}
-
 #streamoverviewwrapper {
+  width: 80vw;
   background-color: #92CD00;
+  margin: 5px;
+  border: 1px solid #2C6700;
 }
 
 #streamoverview {
-  background-color: #92CD00;
   margin: 5px;
 	border: 0;
 	margin: 5px;
@@ -26,6 +21,7 @@ div {
 }
 
 #listenercountwrapper {
+  width: 80vw;
   background-color: #92CD00;
 }
 
@@ -35,6 +31,13 @@ div {
 	border: 0;
 	margin: 5px;
 	margin-bottom: 0;
+}
+
+#streamdetails {
+  width: 80vw;
+  background-color: #92CD00;
+  margin: 5px;
+  border: 1px solid #2C6700;
 }
 
 #footer {
