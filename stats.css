@@ -3,12 +3,12 @@ body {
 	font-size: 14px;
 	color: #333333;
 	margin: 5px;
-	background-color: #687864;
+	background-color: #dfdce3;
 }
 
 #listenercountwrapper {
   width: 80vw;
-  background-color: #31708e;
+  background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #687864;
   border-radius: 10px;
@@ -67,12 +67,12 @@ body {
 
 h1 {
 	font-size: 22px;
-	color: #8fc1e3;
+	color: #31708e;
 }
 
 h2 {
 	font-size: 14px;
-	color: #8fc1e3;
+	color: #31708e;
 	margin: 2px;
 }
 
