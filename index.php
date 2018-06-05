@@ -129,12 +129,14 @@ while ($i <= $servers) {
 	fclose($fp);
 	$i++;
 }
-print"<div id=\"blu\">\n  <div style=\"text-align: center;
-\">\n    <h1>There are $total_listeners listeners</h1>\n  </div>\n</div>\n<div>\n  <div>\n    <p><b>Current song:</b> $song[1]</p>\n  </div>\n</div>\n<div>\n";
+print"<div id=\"listenercountwrapper\"><div id=\"listeners\" style=\"text-align: center;\">\n";
+print"<h1>There are $total_listeners listeners</h1></div></div>\n";
+print"<div id=\"songwrapper\"><div id=\"song\"><p><b>Current song:</b> $song[1]</p></div></div>\n";
+print"<div id=\"streamoverviewwrapper\">\n";
 
 $i = "1";
 while ($i <= $servers) {
-	print"  <div>\n";
+	print"  <div id=\"streamoverview\">\n";
 	if ($max[$i] > 0) {
 		$percentage = round(($listeners[$i]/$max[$i]*100));
 		$timesby    = (450/$max[$i]);
@@ -142,7 +144,7 @@ while ($i <= $servers) {
 	}
 	if ($error[$i] != "1") {
 		?>
-				<table width="600"  border="0" cellspacing="0" cellpadding="0">
+				<table width="90%"  border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td width="25%" align="center"><b><?php print$streamname[$i];?></b></td>
 						<td width="75%" colspan="3" bgcolor="#eeeeee"><img src="<?php if ($percentage == "100") {print"red-";}?>bar.gif" width="<?php print$barlength?>" height="12" alt="The server is at <?php print$percentage;?>% capacity"></td>
@@ -156,7 +158,7 @@ while ($i <= $servers) {
 				</table>
 		<?php } else {
 		?>
-				<table width="600"  border="0" cellspacing="0" cellpadding="0">
+				<table width="90%"  border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td width="25%" align="center"><b><?php print$streamname[$i];?></b></td>
 						<td width="75%" colspan="3" bgcolor="#eeeeee">&nbsp;</td>
@@ -182,7 +184,12 @@ for ($j = 1; $j < $i; $j++) {
 	$k = 1;
 	foreach ($radioStats->listeners as $value) {
 		$ipDetails = new ipWorker("freegeoip.net", "/json/$value[hostname]");
-		print("<tr><td><a href=\"https://www.google.com/maps/place/".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude']."/@".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude'].",z7\" target=\"_blank\">$value[hostname]</a></td><td>" .$ipDetails->ipInfo['country_name']."</td><td>".$ipDetails->ipInfo['region_name']."</td><td>".$ipDetails->ipInfo['city']."</td><td>".secondsToWords($value['connecttime']+0)."</td></tr>\n");
+		print("<tr class=\"$ipDetails->ipInfo['country_code']\">");
+    print("<td><a href=\"https://www.google.com/maps/place/".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude']."/@".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude'].",z7\" target=\"_blank\">$value[hostname]</a></td>");
+    print("<td>" .$ipDetails->ipInfo['country_name']."</td>");
+    print("<td>".$ipDetails->ipInfo['region_name']."</td>");
+    print("<td>".$ipDetails->ipInfo['city']."</td>");
+    print("<td>".secondsToWords($value['connecttime']+0)."</td></tr>\n");
 		$k++;
 	}
 	print("</table>\n");
@@ -196,7 +203,7 @@ $date            = date("jS F, Y", time()+0);
 ?>
 
 <?php
-print"<div>\n<div>\n<p><b>SHOUTcast statistics updated:</b> $date, $time</p>\n<p>Latitude and longitude are estimates. Don't be a kreeper.</p>\n</div>\n</div>\n";
+print"<div id=\"footer\">\n<div>\n<p><b>SHOUTcast statistics updated:</b> $date, $time</p>\n<p>Latitude and longitude are estimates. Don't be a kreeper.</p>\n</div>\n</div>\n";
 ?>
 </body>
 </html>
