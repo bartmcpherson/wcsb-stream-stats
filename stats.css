@@ -3,52 +3,76 @@ body {
 	font-size: 12px;
 	color: #333333;
 	margin: 5px;
-	background-color: #fff;
+	background-color: #E5E4D7;
 }
+
 div {
-	background-color: #fee44b;
-	border: 1px solid #000;
+	border: 1px solid #2C6700;
 	padding: 4px;
 	margin-bottom: 5px;
-	width: 800px;
+	width: 80vw;
 }
-div div {
-	margin: 5px;
+
+#streamoverviewwrapper {
+  background-color: #92CD00;
+}
+
+#streamoverview {
+  background-color: #92CD00;
+  margin: 5px;
 	border: 0;
-	background-color: #fee44b;
 	margin: 5px;
 	margin-bottom: 0;
-	width: 95%;
 }
+
+#listenercountwrapper {
+  background-color: #92CD00;
+}
+
+#listeners {
+  background-color: #92CD00;
+  margin: 5px;
+	border: 0;
+	margin: 5px;
+	margin-bottom: 0;
+}
+
+#footer {
+  background-color: #92CD00;
+}
+
 h1 {
 	font-size: 22px;
 	color: #000;
 	margin: 2px;
 }
+
 h2 {
 	font-size: 14px;
 	color: #336666;
 	margin: 2px;
 }
+
 p {
 	margin: 5px;
 }
+
 a {
-	color: #666699;
+	color: #2C6700;
 	text-decoration: none;
 }
+
 a:hover {
 	color: #993333;
 }
+
 div.line {
-	border-bottom: 1px dashed #000;
+	border-bottom: 1px dashed #2C6700;
 	height: 3px;
 	font-size: 1px;
 	margin-top: 0;
 }
-div#blu, div#blu div {
-	background-color: #14c02a;
-}
+
 .red {
 	color: #CC0000;
 	font-weight: bold;
