@@ -1,15 +1,17 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 	color: #333333;
 	margin: 5px;
-	background-color: #E5E4D7;
+	background-color: #f7f9fb;
 }
 
 #listenercountwrapper {
   width: 80vw;
-  background-color: #92CD00;
-  border: 1px solid #2C6700;
+  background-color: #31708e;
+  margin: 5px;
+  border: 1px solid #687864;
+  border-radius: 10px;
 }
 
 #listeners {
@@ -19,16 +21,18 @@ body {
 
 #songwrapper {
   width: 80vw;
-  background-color: #92CD00;
+  background-color: #687864;
   margin: 5px;
-  border: 1px solid #2C6700;
+  border: 1px solid #31708e;
+  border-radius: 10px;
 }
 
 #streamoverviewwrapper {
   width: 80vw;
-  background-color: #92CD00;
+  background-color: #687864;
   margin: 5px;
-  border: 1px solid #2C6700;
+  border: 1px solid #31708e;
+  border-radius: 10px;
 }
 
 #streamoverview {
@@ -38,9 +42,10 @@ body {
 
 #streamdetails {
   width: 80vw;
-  background-color: #92CD00;
+  background-color: #687864;
   margin: 5px;
-  border: 1px solid #2C6700;
+  border: 1px solid #31708e;
+  border-radius: 10px;
 }
 
 #streamdetails table {
@@ -50,20 +55,25 @@ body {
 
 .tablehead {
   font-weight: bold;
+  color: #f799fb;
 }
 
 #footer {
-  background-color: #92CD00;
+  width: 80vw;
+  background-color: #687864;
+  margin: 5px;
+  border: 1px solid #31708e;
+  border-radius: 10px;
 }
 
 h1 {
 	font-size: 22px;
-	color: #000;
+	color: #8fc1e3;
 }
 
 h2 {
 	font-size: 14px;
-	color: #336666;
+	color: #8fc1e3;
 	margin: 2px;
 }
 
@@ -72,16 +82,16 @@ p {
 }
 
 a {
-	color: #2C6700;
+	color: #5085a5;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #993333;
+	color: #8fc1e3;
 }
 
 div.line {
-	border-bottom: 1px dashed #2C6700;
+	border-bottom: 1px dashed #31708e;
 	height: 3px;
 	font-size: 1px;
 	margin-top: 0;
