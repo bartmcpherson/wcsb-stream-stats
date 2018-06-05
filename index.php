@@ -177,10 +177,10 @@ while ($i <= $servers) {
 print"</div>\n";
 for ($j = 1; $j < $i; $j++) {
 	$radioStats = new statsWorker($ip[$j], $port[$j], $user_page, $adminuser, $adminpwd);
-	print("<div id=\streamdetails\">\n");
+	print("<div id=\"streamdetails\">\n");
 	print("<table width=\"100%\">\n");
-	print("<tr><td colspan=\"5\" align=\"center\"><b>$streamname[$j] Listener Details</b></td></tr>\n");
-	print("<tr><td><b>IP Address</b></td><td><b>Country</b></td><td><b>Region</b></td><td><b>City</b></td><td><b>Connection Time</b></td></tr>\n");
+	print("<tr class=\"tablehead\"><td colspan=\"5\" align=\"center\">$streamname[$j] Listener Details</td></tr>\n");
+	print("<tr class=\"tablehead\"><td>IP Address</td><td>Country</td><td>Region</td><td>City</td><td>Connection Time</td></tr>\n");
 	$k = 1;
 	foreach ($radioStats->listeners as $value) {
 		$ipDetails = new ipWorker("freegeoip.net", "/json/$value[hostname]");
