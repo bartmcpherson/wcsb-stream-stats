@@ -3,7 +3,7 @@ body {
 	font-size: 14px;
 	color: #333333;
 	margin: 5px;
-	background-color: #f7f9fb;
+	background-color: #687864;
 }
 
 #listenercountwrapper {
@@ -15,13 +15,12 @@ body {
 }
 
 #listeners {
-  background-color: #92CD00;
 	border: 0;
 }
 
 #songwrapper {
   width: 80vw;
-  background-color: #687864;
+  background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #31708e;
   border-radius: 10px;
@@ -29,7 +28,7 @@ body {
 
 #streamoverviewwrapper {
   width: 80vw;
-  background-color: #687864;
+  background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #31708e;
   border-radius: 10px;
@@ -42,7 +41,7 @@ body {
 
 #streamdetails {
   width: 80vw;
-  background-color: #687864;
+  background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #31708e;
   border-radius: 10px;
@@ -55,12 +54,12 @@ body {
 
 .tablehead {
   font-weight: bold;
-  color: #f799fb;
+  color: #31708e;
 }
 
 #footer {
   width: 80vw;
-  background-color: #687864;
+  background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #31708e;
   border-radius: 10px;
