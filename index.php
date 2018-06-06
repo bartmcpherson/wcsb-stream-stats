@@ -171,8 +171,12 @@ while ($i <= $servers) {
 					</tr>
 				</table>
 		<?php }
-	print"<p><b>Status:</b> $msg[$i]</p>\n  </div>\n  <div class=\"line\"> </div>\n";
+	print"<p><b>Status:</b> $msg[$i]</p>\n  </div>\n";
+
 	$i++;
+	if($i < $servers) {
+		print"<div class=\"line\"> </div>\n";
+	}
 }
 print"</div>\n";
 for ($j = 1; $j < $i; $j++) {
