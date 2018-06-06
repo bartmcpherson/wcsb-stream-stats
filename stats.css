@@ -58,7 +58,7 @@ body {
   color: #31708e;
 }
 
-.streamtable tr.tabledetail:nth-cild(odd) {
+.streamtable tr.tabledetail:nth-child(odd) {
   background-color: #dfdce3;
 }
 
