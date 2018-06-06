@@ -182,13 +182,13 @@ print"</div>\n";
 for ($j = 1; $j < $i; $j++) {
 	$radioStats = new statsWorker($ip[$j], $port[$j], $user_page, $adminuser, $adminpwd);
 	print("<div id=\"streamdetails\">\n");
-	print("<table width=\"100%\">\n");
+	print("<table class=\"streamtable\" width=\"100%\">\n");
 	print("<tr class=\"tablehead\"><td colspan=\"5\" align=\"center\">$streamname[$j] Listener Details</td></tr>\n");
 	print("<tr class=\"tablehead\"><td>IP Address</td><td>Country</td><td>Region</td><td>City</td><td>Connection Time</td></tr>\n");
 	$k = 1;
 	foreach ($radioStats->listeners as $value) {
 		$ipDetails = new ipWorker("freegeoip.net", "/json/$value[hostname]");
-		print("<tr class=\"".$ipDetails->ipInfo['country_code']."\">");
+		print("<tr class=\"".$ipDetails->ipInfo['country_code']." tabledetail\">");
     print("<td><a href=\"https://www.google.com/maps/place/".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude']."/@".$ipDetails->ipInfo['latitude'].",".$ipDetails->ipInfo['longitude'].",z7\" target=\"_blank\">$value[hostname]</a></td>");
     print("<td>" .$ipDetails->ipInfo['country_name']."</td>");
     print("<td>".$ipDetails->ipInfo['region_name']."</td>");

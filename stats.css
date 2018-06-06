@@ -7,7 +7,7 @@ body {
 }
 
 #listenercountwrapper {
-  width: 80vw;
+  width: 96vw;
   background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #687864;
@@ -19,7 +19,7 @@ body {
 }
 
 #songwrapper {
-  width: 80vw;
+  width: 96vw;
   background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #31708e;
@@ -27,7 +27,7 @@ body {
 }
 
 #streamoverviewwrapper {
-  width: 80vw;
+  width: 96vw;
   background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #31708e;
@@ -40,7 +40,7 @@ body {
 }
 
 #streamdetails {
-  width: 80vw;
+  width: 96vw;
   background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #31708e;
@@ -50,6 +50,7 @@ body {
 #streamdetails table {
   margin: 5px;
   width: 100%;
+  border-collapse: collapse;
 }
 
 .tablehead {
@@ -57,8 +58,12 @@ body {
   color: #31708e;
 }
 
+#streamtable tr.tabledetail:nth-cild(odd) {
+  background-color: #dfdce3;
+}
+
 #footer {
-  width: 80vw;
+  width: 96vw;
   background-color: #f7f9fb;
   margin: 5px;
   border: 1px solid #31708e;
