@@ -19,6 +19,7 @@ Version: v1.1
 require_once "settings.php";
 require_once "statsWorker.php";
 require_once "ipWorker.php";
+require_once "ipDBLookup.php";
 
 function secondsToWords($seconds) {
   $ret = "";
@@ -147,7 +148,9 @@ while ($i <= $servers) {
 				<table width="90%"  border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td width="25%" align="center"><b><?php print $streamname[$i];?></b></td>
-						<td width="75%" colspan="3" bgcolor="#eeeeee"><img src="<?php if ($percentage == "100") {print "red-";}?>bar.gif" width="<?php print $barlength?>" height="12" alt="The server is at <?php print $percentage;?>% capacity"></td>
+						<td width="75%" colspan="3" bgcolor="#eeeeee">
+              <div style="background-color: #31708e; width: <?php print($percentage.'%')?>;">&nbsp;</div>
+              </td>
 					</tr>
 					<tr>
 						<td width="25%">&nbsp;</td>
@@ -187,12 +190,13 @@ for ($j = 1; $j < $i; $j++) {
   print("<tr class=\"tablehead\"><td>IP Address</td><td>Country</td><td>Region</td><td>City</td><td>Connection Time</td></tr>\n");
   $k = 1;
   foreach ($radioStats->listeners as $value) {
-    $ipDetails = new ipWorker("ip-api.com", "/json/$value[hostname]");
-    print("<tr class=\"" . $ipDetails->ipInfo['countryCode'] . " tabledetail\">");
-    print("<td><a href=\"https://www.google.com/maps/place/" . $ipDetails->ipInfo['lat'] . "," . $ipDetails->ipInfo['lon'] . "/@" . $ipDetails->ipInfo['lat'] . "," . $ipDetails->ipInfo['lon'] . ",z7\" target=\"_blank\">$value[hostname]</a></td>");
-    print("<td>" . $ipDetails->ipInfo['country'] . "</td>");
-    print("<td>" . $ipDetails->ipInfo['regionName'] . "</td>");
-    print("<td>" . $ipDetails->ipInfo['city'] . "</td>");
+    //$ipDetails = new ipWorker("ip-api.com", "/json/$value[hostname]");
+    $ipDetails = new ipDBLookup($value['hostname'], $mysqlinfo);
+    print("<tr class=\"" . $ipDetails->ipInfo['country_code'] . " tabledetail\">");
+    print("<td>".$value['hostname']."</td>");
+    print("<td>" . $ipDetails->ipInfo['country_name'] . "</td>");
+    print("<td>" . $ipDetails->ipInfo['region_name'] . "</td>");
+    print("<td>" . $ipDetails->ipInfo['city_name'] . "</td>");
     print("<td>" . secondsToWords($value['connecttime'] + 0) . "</td></tr>\n");
     $k++;
   }
@@ -207,7 +211,7 @@ $date = date("jS F, Y", time() + 0);
 ?>
 
 <?php
-print "<div id=\"footer\">\n<div>\n<p><b>SHOUTcast statistics updated:</b> $date, $time</p>\n<p>Latitude and longitude are estimates. Don't be a kreeper.</p>\n</div>\n</div>\n";
+print "<div id=\"footer\">\n<div>\n<p><b>SHOUTcast statistics updated:</b> $date, $time</p>\n</div>\n</div>\n";
 ?>
 </body>
 </html>

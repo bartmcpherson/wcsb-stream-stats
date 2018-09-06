@@ -24,4 +24,12 @@ $adminpwd        = 'user password';
 $user_page       = '/admin.cgi?sid=1&mode=viewxml&page=3';
 $song_list_uri   = '/admin.cgi?sid=1&mode=viewxml&page=4';
 $update_song_uri = '/admin.cgi?sid=1&mode=updinfo&song=';
+
+/* ---------- MySQL configuration ---------- */
+$mysqlinfo = array('dbhost' => 'localhost', 
+				'dbname' => 'ip2loc',
+				'dbuser' => '',
+				'dbuserpassw' => '',
+				'iptablename' => 'lookup',
+			);
 ?>
