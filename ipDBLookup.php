@@ -16,7 +16,6 @@ class ipDBLookup {
 	    mysqli_select_db($link, $mysqlinfo["dbname"]) or die("Could not select database");
 
     	$query = "SELECT * FROM " . $mysqlinfo['iptablename'] . " WHERE ip_to >=" . $longip . " order by ip_to limit 1";
-    	error_log("query is: $query");
     	if(!$query) {
 			echo "Error";
 		} else {
