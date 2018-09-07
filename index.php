@@ -78,7 +78,7 @@ if ($refresh != "0") {
 print "<title>$station_name SHOUTcast Stats</title>\n";
 ?>
 <link rel="stylesheet" type="text/css" href="stats.css">
-<link rel="stylesheet" type="text/css" href="css/flag-icon.css">
+<link rel="stylesheet" type="text/css" href="css/flag-icon.min.css">
 
 </head>
 <body>
