@@ -15,3 +15,6 @@ Load the data into the table.
 LOAD DATA LOCAL INFILE 'IP2LOCATION-LITE-DB3.CSV' INTO TABLE lookup FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n';
 
 Copy default.settings.php to settings.php and fillout the variable values for your site.
+
+__Flags__
+Can be obtained from https://github.com/lipis/flag-icon-css

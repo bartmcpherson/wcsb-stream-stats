@@ -78,6 +78,7 @@ if ($refresh != "0") {
 print "<title>$station_name SHOUTcast Stats</title>\n";
 ?>
 <link rel="stylesheet" type="text/css" href="stats.css">
+<link rel="stylesheet" type="text/css" href="css/flag-icon.css">
 
 </head>
 <body>
@@ -194,7 +195,7 @@ for ($j = 1; $j < $i; $j++) {
     $ipDetails = new ipDBLookup($value['hostname'], $mysqlinfo);
     print("<tr class=\"" . $ipDetails->ipInfo['country_code'] . " tabledetail\">");
     print("<td>".$value['hostname']."</td>");
-    print("<td>" . $ipDetails->ipInfo['country_name'] . "</td>");
+    print("<td><span class=\"flag-icon flag-icon-" . strtolower($ipDetails->ipInfo['country_code']) . "\"></span> " . $ipDetails->ipInfo['country_name'] . "</td>");
     print("<td>" . $ipDetails->ipInfo['region_name'] . "</td>");
     print("<td>" . $ipDetails->ipInfo['city_name'] . "</td>");
     print("<td>" . secondsToWords($value['connecttime'] + 0) . "</td></tr>\n");
